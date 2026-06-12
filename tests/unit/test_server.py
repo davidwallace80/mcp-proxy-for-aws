@@ -57,12 +57,13 @@ class TestServer:
         mock_args.read_only = True
         mock_args.retries = 1
         mock_args.metadata = None
-        # Add timeout parameters
         mock_args.timeout = 180.0
         mock_args.connect_timeout = 60.0
         mock_args.read_timeout = 120.0
         mock_args.write_timeout = 180.0
         mock_args.log_level = 'INFO'
+        mock_args.host = None
+        mock_args.port = None
 
         # Mock return values
         mock_determine_service.return_value = 'test-service'
@@ -129,12 +130,13 @@ class TestServer:
         mock_args.read_only = False
         mock_args.retries = 0  # No retries
         mock_args.metadata = {'AWS_REGION': 'eu-west-1', 'CUSTOM_KEY': 'custom_value'}
-        # Add timeout parameters
         mock_args.timeout = 180.0
         mock_args.connect_timeout = 60.0
         mock_args.read_timeout = 120.0
         mock_args.write_timeout = 180.0
         mock_args.log_level = 'INFO'
+        mock_args.host = None
+        mock_args.port = None
 
         # Mock return values
         mock_determine_service.return_value = 'test-service'
@@ -208,6 +210,8 @@ class TestServer:
         mock_args.read_timeout = 120.0
         mock_args.write_timeout = 180.0
         mock_args.log_level = 'INFO'
+        mock_args.host = None
+        mock_args.port = None
 
         mock_determine_service.return_value = 'test-service'
         mock_determine_region.return_value = 'ap-southeast-1'
@@ -263,6 +267,8 @@ class TestServer:
         mock_args.read_timeout = 120.0
         mock_args.write_timeout = 180.0
         mock_args.log_level = 'INFO'
+        mock_args.host = None
+        mock_args.port = None
 
         mock_determine_service.return_value = 'test-service'
         mock_determine_region.return_value = 'us-west-1'

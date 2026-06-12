@@ -112,7 +112,17 @@ async def run_proxy(args) -> None:
 
         if args.retries:
             add_retry_middleware(proxy, args.retries)
-        await proxy.run_async(transport='stdio', show_banner=False, log_level=args.log_level)
+
+        http_mode = args.host is not None or args.port is not None
+        transport = 'http' if http_mode else 'stdio'
+        transport_kwargs = {'log_level': args.log_level}
+        if http_mode:
+            if args.host is not None:
+                transport_kwargs['host'] = args.host
+            if args.port is not None:
+                transport_kwargs['port'] = args.port
+
+        await proxy.run_async(transport=transport, show_banner=False, **transport_kwargs)
     except Exception as e:
         logger.error('Cannot start proxy server: %s', e)
         raise e

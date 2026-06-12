@@ -180,4 +180,19 @@ Examples:
         help='Skip request signing when AWS credentials are unavailable instead of failing',
     )
 
+    parser.add_argument(
+        '--host',
+        default=None,
+        help='Host address to bind to when serving over HTTP (e.g. 0.0.0.0). '
+        'Setting this implicitly switches transport from stdio to http.',
+    )
+
+    parser.add_argument(
+        '--port',
+        type=int,
+        default=None,
+        help='Port to listen on when serving over HTTP (e.g. 8080). '
+        'Setting this implicitly switches transport from stdio to http.',
+    )
+
     return parser.parse_args()
